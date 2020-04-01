@@ -10,9 +10,7 @@ export class MovieCardComponent implements OnInit {
   @Input() genres: any;
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.genres);
-  }
+  ngOnInit(): void {}
 
   getGenre(item) {
     return this.genres.filter((x) => item === x.id)[0];

@@ -15,7 +15,6 @@ export class MovieComponent implements OnInit {
   constructor(private http: HttpClient, private route: ActivatedRoute) {}
 
   async ngOnInit(): Promise<void> {
-    console.log(this.route.snapshot.params);
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -27,10 +26,9 @@ export class MovieComponent implements OnInit {
     };
     this.movie = await this.http
       .get(
-        environment.tmdb_api_url + '/' + this.route.snapshot.params.id,
+        environment.tmdb_api_url + '/movie/' + this.route.snapshot.params.id,
         httpOptions
       )
       .toPromise();
-    console.log(this.movie);
   }
 }

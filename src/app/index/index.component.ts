@@ -20,6 +20,10 @@ export class IndexComponent implements OnInit {
         Authorization: `Bearer ${environment.tmdb_api_token}`,
       }),
     };
+    this.genres = await this.http
+      .get(`${environment.tmdb_api_url}/genre/movie/list`, httpOptions)
+      .toPromise();
+    this.genres = this.genres.genres;
     this.popularMovies = await this.http
       .get(`${environment.tmdb_api_url}/movie/popular`, httpOptions)
       .toPromise();
@@ -27,10 +31,5 @@ export class IndexComponent implements OnInit {
     this.nowPlayingMovies = await this.http
       .get(`${environment.tmdb_api_url}/movie/now_playing`, httpOptions)
       .toPromise();
-
-    this.genres = await this.http
-      .get(`${environment.tmdb_api_url}/genre/movie/list`, httpOptions)
-      .toPromise();
-    this.genres = this.genres.genres;
   }
 }
